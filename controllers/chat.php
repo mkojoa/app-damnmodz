@@ -113,10 +113,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }else
 
-
-                header('Content-Type: application/json');
-            echo json_encode($responseData);
-            exit();
+                echo json_encode($responseData);
+                exit();
         }
 
     }
@@ -330,7 +328,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 }
             }
 
-            header('Content-Type: application/json');
             echo json_encode($responseData);
             exit();
         }

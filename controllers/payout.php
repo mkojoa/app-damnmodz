@@ -10,18 +10,6 @@ $dbHandler = $config->getDbHandler();
 $authUser = $config->getAuthUser();
 
 
-//if(isset($authUser['sub'])){
-//
-//    $user = $dbHandler->selectData('users', 'id', $authUser['sub']);
-//
-//  if(!empty($user)) {
-//
-//    $id = $user['id'];
-//    $type = $user['type'];
-//
-//  }
-//}
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $responseData= [];
 
@@ -60,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
 
-            header('Content-Type: application/json');
             echo json_encode($responseData);
             exit();
         }
@@ -368,7 +355,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'PUT'){
-
+$responseData = [];
     if(isset($_GET['del'])){
         $del = $dbHandler->deleteData('users_payout', 'id', "$_GET[del]");
 
@@ -415,9 +402,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT'){
             ];
         }
     }
-
-
-    header('Content-Type: application/json');
     echo json_encode($responseData);
     exit();
 }
