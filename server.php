@@ -145,6 +145,18 @@ if(isset($_GET['all'])){
 
 
 if(isset($_GET['id'])){
+    $wcSecreteKey = $config->getSetting('wc_secrete_key');
+    $wcConsumerKey = $config->getSetting('wc_consumer_key');
+    $wcStore = $config->getSetting('wc_store');
+
+    if (empty($wcSecreteKey) || empty($wcConsumerKey) || empty($wcStore)) {
+        error_log("WooCommerce API keys are missing or invalid.");
+        throw new Exception("WooCommerce API keys are missing or invalid.");
+    }
+
+    $apiHandler = new ApiHandler($wcSecreteKey, $wcConsumerKey, $wcStore);
+
+
     $order = $apiHandler->getOrder($_GET['id']);
     if (!empty($order)) {
                 // check if order_id already exists
